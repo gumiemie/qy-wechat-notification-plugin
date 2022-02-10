@@ -1,6 +1,7 @@
 package org.jenkinsci.plugins.qywechat.dto;
 
 import org.jenkinsci.plugins.qywechat.NotificationUtil;
+import org.jenkinsci.plugins.qywechat.UserContext;
 import org.jenkinsci.plugins.qywechat.model.NotificationConfig;
 import hudson.model.Result;
 import hudson.model.Run;
@@ -77,6 +78,7 @@ public class BuildOverInfo {
             content.append(this.topicName);
         }
         content.append("<font color=\"info\">【" + this.projectName + "】</font>构建" + getStatus() + "\n");
+        content.append(" >构建人：<font color=\"comment\">" + UserContext.get().getUserName() + "</font>\n");
         content.append(" >构建用时：<font color=\"comment\">" +  this.useTimeString + "</font>\n");
         if(StringUtils.isNotEmpty(this.consoleUrl)) {
             content.append(" >[查看控制台](" + this.consoleUrl + ")");

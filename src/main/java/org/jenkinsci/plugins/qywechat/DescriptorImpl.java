@@ -13,8 +13,6 @@ import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
 
 /**
@@ -159,7 +157,7 @@ public class DescriptorImpl extends BuildStepDescriptor<Publisher> {
         try{
             NotificationUtil.push(TEST_URL, "", buildConfig);
             return FormValidation.ok("测试成功");
-        } catch (HttpProcessException | KeyManagementException | NoSuchAlgorithmException e) {
+        } catch (HttpProcessException e) {
             e.printStackTrace();
             return FormValidation.error("连接异常" + e.getMessage());
         }
